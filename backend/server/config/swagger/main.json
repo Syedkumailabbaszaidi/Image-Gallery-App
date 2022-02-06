@@ -1,0 +1,259 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/users/register": {
+      "post": {
+        "description": "Register user",
+        "parameters": [
+          {
+            "name": "email",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "password",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "dob",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "gender",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "provider",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "providerId",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "authToken",
+            "paramType": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Register"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "description": "User Login",
+        "parameters": [
+          {
+            "name": "email",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "password",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "provider",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "providerId",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "authToken",
+            "paramType": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Login"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "get": {
+        "description": "User logout",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Logout"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/send-otp": {
+      "post": {
+        "description": "Send OTP",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Bearer token to be passed as a header",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "paramType": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Send_OTP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/resend-otp": {
+      "post": {
+        "description": "Resend OTP",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Bearer token to be passed as a header",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "paramType": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Send_OTP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/verify-otp": {
+      "post": {
+        "description": "Verify OTP",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Bearer token to be passed as a header",
+            "required": true
+          },
+          {
+            "name": "phone",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "code",
+            "paramType": "number",
+            "required": true
+          },
+          {
+            "name": "userId",
+            "paramType": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Verify_OTP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/check-user-exist": {
+      "post": {
+        "description": "Check User is exist in DB or not",
+        "parameters": [
+          {
+            "name": "email",
+            "paramType": "string",
+            "required": true
+          },
+          {
+            "name": "provider",
+            "paramType": "string",
+            "required": false
+          },
+          {
+            "name": "providerId",
+            "paramType": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "$ref": "server/config/swagger/definitions.json#/definitions/Check_User_Exist"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
