@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   ImageSize.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       url: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'ImageSize',
       tableName: 'image_sizes',
+      timestamps: false,
     },
   );
   return ImageSize;

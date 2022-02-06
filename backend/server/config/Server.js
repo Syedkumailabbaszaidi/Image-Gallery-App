@@ -1,31 +1,33 @@
-import Express from "express";
-import * as path from "path";
-import * as http from "http";
-import * as os from "os";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import logger from "./logger";
-import { statusCodes } from "../shared/utils/constants";
+import Express from 'express';
+import * as path from 'path';
+import * as http from 'http';
+import * as os from 'os';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import logger from './logger';
+import { statusCodes } from '../shared/utils/constants';
+import { config } from 'aws-sdk';
+import ENV from '../config/env';
 
-const jsonRefs = require("json-refs");
+const jsonRefs = require('json-refs');
 
-const swaggerUi = require("swagger-ui-express");
+const swaggerUi = require('swagger-ui-express');
 
-const swaggerDocument = require("./swagger/main.json");
+const swaggerDocument = require('./swagger/main.json');
 
 const { resolveRefs } = jsonRefs;
 
-const { error } = logger("Server App", "");
-const whitelist = ["https://www.abc.com", "https://abc.com"];
+const { error } = logger('Server App', '');
+const whitelist = ['https://www.abc.com', 'https://abc.com'];
 
 const corsOptions =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === 'production'
     ? {
         origin(origin, callback) {
           if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
           } else {
-            callback(new Error("Not allowed by CORS"));
+            callback(new Error('Not allowed by CORS'));
           }
         },
       }
@@ -35,15 +37,15 @@ export default class ExpressServer {
   constructor() {
     const root = path.normalize(`${__dirname}/../..`);
     const app = new Express();
-    app.set("appPath", `${root}client`);
-    app.use(Express.json({ limit: process.env.REQUEST_LIMIT || "1000kb" }));
+    app.set('appPath', `${root}client`);
+    app.use(Express.json({ limit: process.env.REQUEST_LIMIT || '1000kb' }));
     app.use(
       Express.urlencoded({
         extended: true,
-        limit: process.env.REQUEST_LIMIT || "1000kb",
-      })
+        limit: process.env.REQUEST_LIMIT || '1000kb',
+      }),
     );
-    app.use(Express.text({ limit: process.env.REQUEST_LIMIT || "1000kb" }));
+    app.use(Express.text({ limit: process.env.REQUEST_LIMIT || '1000kb' }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(Express.static(`${root}/public`));
     app.use(cors(corsOptions));
@@ -58,27 +60,21 @@ export default class ExpressServer {
   }
 
   listen(port = process.env.PORT || 4000) {
-    const welcome = p => () => {
+    const welcome = (p) => () => {
       const msg = `up and running in ${
-        process.env.NODE_ENV || "development"
+        process.env.NODE_ENV || 'development'
       } @: ${os.hostname()} on port: ${p}}`;
       // eslint-disable-next-line no-console
       console.info(msg);
       return msg;
     };
 
-    this.app.use(
-      "/api-docs",
-      swaggerUi.serve,
-      swaggerUi.setup(this.swaggerDocFinal)
-    );
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(this.swaggerDocFinal));
 
     this.routes(this.app);
 
     this.app.use((req, res) =>
-      res
-        .status(statusCodes.NOT_FOUND)
-        .send({ message: `${req.url} path not found.` })
+      res.status(statusCodes.NOT_FOUND).send({ message: `${req.url} path not found.` }),
     );
 
     this.app.use((err, req, res) => {
@@ -96,7 +92,7 @@ export default class ExpressServer {
 
   async multiFileSwagger(root) {
     const options = {
-      filter: ["relative"],
+      filter: ['relative'],
       loaderOptions: {
         processContent: (res, callback) => {
           callback(null, JSON.parse(res.text));
@@ -105,10 +101,10 @@ export default class ExpressServer {
     };
 
     return resolveRefs(root, options).then(
-      results => results.resolved,
-      err => {
+      (results) => results.resolved,
+      (err) => {
         error(err);
-      }
+      },
     );
   }
 }

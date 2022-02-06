@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Image.hasMany(models.ImageSize, {
         foreignKey: 'imageId',
+        as: 'sizes',
       });
       Image.belongsTo(models.User, {
         foreignKey: 'userId',
@@ -12,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Image.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -22,11 +29,17 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      },
     },
     {
       sequelize,
       modelName: 'Image',
       tableName: 'images',
+      timestamps: false,
     },
   );
   return Image;

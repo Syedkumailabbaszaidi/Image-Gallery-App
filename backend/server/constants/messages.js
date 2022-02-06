@@ -152,3 +152,9 @@ export const USERS_MESSAGES = {
   NAME_LENGTH_ERROR: 'Name must be at least 3 characters',
   PASSWORD_LENGTH_ERROR: 'Password must be at least 8 characters',
 };
+
+export const IMAGE_MESSAGES = {
+  IMAGE_SIZE_ERROR: 'Image should be less than 20MB',
+  IMAGE_TYPE_ERROR: 'Only png, jpg and jpeg types are allowed',
+  IMAGE_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Image'),
+};
