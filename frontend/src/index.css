@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 @import '~react-image-gallery/styles/css/image-gallery.css';
+
+.image-gallery-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}

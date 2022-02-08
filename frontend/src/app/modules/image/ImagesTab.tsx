@@ -83,66 +83,65 @@ const ImagesTab = (): ReactElement => {
 
   return (
     <>
-      <Container fixed>
-        <Box sx={{ height: '100vh' }}>
-          {!showLightBox && (
-            <>
-              <ImageList gap={1} cols={4}>
-                {imagesData.map((image: any, index) => (
-                  <ImageListItem key={index} sx={{ cursor: 'pointer' }}>
-                    <img
-                      src={image.thumbnail}
-                      srcSet={`${image.thumbnail}`}
-                      alt={''}
-                      loading="lazy"
-                      onClick={() => {
-                        handleClick(index);
-                      }}
-                    />
-                    <ImageListItemBar
-                      sx={{
-                        background:
-                          'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                          'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                      }}
-                      position="top"
-                      actionIcon={
-                        <>
-                          <Tooltip title="Tag Friend">
-                            <IconButton
-                              sx={{ color: 'white' }}
-                              onClick={() => handleShareButtonClick(image)}
-                            >
-                              <ShareIcon />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title={`Tagged ${image.sharedWith?.length || 0} friends`}>
-                            <>
-                              <VisibilityIcon sx={{ color: 'white', mr: 1 }} />
-                              <span className="text-sm text-white">
-                                {image.sharedWith?.length || 0}
-                              </span>
-                            </>
-                          </Tooltip>
-                        </>
-                      }
-                      actionPosition="left"
-                    />
-                  </ImageListItem>
-                ))}
-              </ImageList>
-              {!imagesData.length && <Typography className="text-center">No Data</Typography>}
-            </>
-          )}
-        </Box>
-      </Container>
-      {showLightBox && (
+      {showLightBox ? (
         <ImageGallery
           items={imagesData}
           ref={galleryRef}
           startIndex={currentIndex}
           renderCustomControls={lightboxCustomControls}
         />
+      ) : (
+        <Container fixed>
+          <Box sx={{ height: '100vh' }}>
+            {!showLightBox && (
+              <>
+                <ImageList gap={1} cols={4}>
+                  {imagesData.map((image: any, index) => (
+                    <ImageListItem key={index} sx={{ cursor: 'pointer' }}>
+                      <img
+                        src={image.thumbnail}
+                        srcSet={`${image.thumbnail}`}
+                        alt={''}
+                        loading="lazy"
+                        onClick={() => {
+                          handleClick(index);
+                        }}
+                      />
+                      <ImageListItemBar
+                        sx={{
+                          background:
+                            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                        }}
+                        position="top"
+                        actionIcon={
+                          <>
+                            <Tooltip title="Tag Friend">
+                              <IconButton
+                                sx={{ color: 'white' }}
+                                onClick={() => handleShareButtonClick(image)}
+                              >
+                                <ShareIcon />
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip title={`Tagged ${image.sharedWith?.length || 0} friends`}>
+                              <VisibilityIcon sx={{ color: 'white', mr: 1 }} />
+                            </Tooltip>
+                            <span className="text-sm text-white">
+                              {image.sharedWith?.length || 0}
+                            </span>
+                          </>
+                        }
+                        actionPosition="left"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+                {!imagesData.length && <Typography className="text-center">No Data</Typography>}
+              </>
+            )}
+          </Box>
+        </Container>
       )}
       <TagFriendDialog
         open={dialogOpen}

@@ -18,6 +18,7 @@ const uploadImage = async (req, res) => {
   const { info, error } = logger('images/uploadImage', (req.user || {}).id);
   try {
     info(init);
+    req.setTimeout(500000);
     const { files, user } = req;
     const response = await ImageService.uploadImage(files, user);
     res.json(response);

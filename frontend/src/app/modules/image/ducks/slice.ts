@@ -18,6 +18,18 @@ const ImageSlice = createSlice({
   name: 'image',
   initialState,
   reducers: {
+    uploadImagesPending(state) {
+      return { ...state, loading: true };
+    },
+    uploadImagesSuccess(state) {
+      return {
+        ...state,
+        loading: false,
+      };
+    },
+    uploadImagesError(state) {
+      return { ...state, loading: true };
+    },
     fetchImagesPending(state) {
       return { ...state, loading: true };
     },
@@ -52,6 +64,9 @@ const ImageSlice = createSlice({
 export const { actions: ImageActions, reducer: ImageReducer, name: sliceKey } = ImageSlice;
 
 export const {
+  uploadImagesPending,
+  uploadImagesSuccess,
+  uploadImagesError,
   fetchImagesPending,
   fetchImagesSuccess,
   fetchImagesError,
@@ -69,6 +84,25 @@ export const fetchImages = () => async (dispatch: AppDispatch) => {
     if (error && error.response) {
       const errorObj: ApiResponse = error.response.data;
       dispatch(ImageActions.fetchImagesError());
+      dispatch(showMessage({ message: errorObj.message, variant: 'error' }));
+    } else {
+      dispatch(showMessage({ message: error.message, variant: 'error' }));
+    }
+  }
+};
+
+export const uploadImages = (images: any, onSuccess?: func) => async (dispatch: AppDispatch) => {
+  dispatch(ImageActions.uploadImagesPending());
+  try {
+    await ImageService.uploadImages(images);
+    dispatch(ImageActions.uploadImagesSuccess());
+    if (onSuccess) {
+      onSuccess();
+    }
+  } catch (error: any) {
+    if (error && error.response) {
+      const errorObj: ApiResponse = error.response.data;
+      dispatch(ImageActions.uploadImagesError());
       dispatch(showMessage({ message: errorObj.message, variant: 'error' }));
     } else {
       dispatch(showMessage({ message: error.message, variant: 'error' }));

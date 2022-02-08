@@ -214,18 +214,11 @@ const Login = (): ReactElement => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link to="#">
-                  <Typography variant="body2">Forgot password?</Typography>
-                </Link>
-              </Grid>
+              <Grid item xs></Grid>
               <Grid item>
                 <Link to="/register">
                   <Typography variant="body2">Don't have an account? Sign Up</Typography>
                 </Link>
-                {/* <Link to="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link> */}
               </Grid>
             </Grid>
             <CopyRight sx={{ mt: 5 }} />

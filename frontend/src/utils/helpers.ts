@@ -12,3 +12,10 @@ export const generateImageList = (images: any) => {
     };
   });
 };
+
+export const getNameInitials = (name: string): string => {
+  const getAllInitials = name.match(/(^\S\S?|\b\S)?/g);
+  const getAllInitialsJoined = (getAllInitials || ['']).join('');
+  const getSpecificInitials = getAllInitialsJoined.match(/(^\S|\S$)?/g);
+  return (getSpecificInitials || []).join('').toUpperCase();
+};

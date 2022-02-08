@@ -21,10 +21,11 @@ export const tagImage = async (imageId: string, users: string[]) => {
   return request(params);
 };
 
-export const uploadImages = async () => {
+export const uploadImages = async (images: any) => {
   const params = {
-    url: `${BASE_URL}/register`,
+    url: `${BASE_URL}/upload`,
     method: HTTP_METHODS.POST,
+    data: images,
   };
-  return request(params);
+  return await request(params);
 };

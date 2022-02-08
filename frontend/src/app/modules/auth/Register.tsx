@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -102,7 +102,7 @@ const Register = (): ReactElement => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box
             component="form"
@@ -177,17 +177,13 @@ const Register = (): ReactElement => {
             />
 
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
+              Sign up
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+              <Grid item xs></Grid>
               <Grid item>
-                <Link href="/login" variant="body2">
-                  {'Already have an account? Sign Ip'}
+                <Link to="/login">
+                  <Typography variant="body2">Already have an account? Sign In</Typography>
                 </Link>
               </Grid>
             </Grid>
