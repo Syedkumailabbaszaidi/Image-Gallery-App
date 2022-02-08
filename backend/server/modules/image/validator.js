@@ -1,7 +1,8 @@
 /* eslint-disable consistent-return */
-import { body } from 'express-validator';
+import { body, param } from 'express-validator';
 import { IMAGE_MESSAGES } from '../../constants/messages';
 import { getFileExtention } from '../../shared/utils/file';
+import UserRepo from '../../db/repositories/user';
 
 const allowAttachmentExtensions = ['png', 'jpg', 'jpeg'];
 const allowSize = 160000000;
@@ -14,6 +15,13 @@ const allowSize = 160000000;
  */
 const ImageValidation = (method) => {
   switch (method) {
+    case 'param': {
+      return [
+        param('id').notEmpty().withMessage(IMAGE_MESSAGES.ID_IS_INVALID),
+        body('users').isArray().withMessage(IMAGE_MESSAGES.SHARED_USERS_REQUIRED),
+      ];
+    }
+
     case 'upload': {
       return [
         body('images').custom((attachments, { req }) => {

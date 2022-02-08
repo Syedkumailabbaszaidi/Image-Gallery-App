@@ -8,35 +8,31 @@
         "message": {
           "type": "string"
         },
-        "user": {
+        "data": {
           "type": "object",
           "properties": {
-            "id": {
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              }
+            },
+            "token": {
               "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "phone": {
-              "type": "string"
-            },
-            "otpverified": {
-              "type": "boolean"
-            },
-            "dob": {
-              "type": "string"
-            },
-            "gender": {
-              "type": "string"
-            },
-            "otp_verified": {
-              "type": "boolean"
-            },
-            "email_verified": {
-              "type": "boolean"
             }
           }
         }
@@ -50,38 +46,25 @@
         "message": {
           "type": "string"
         },
-        "token": {
-          "type": "string"
-        },
-        "user": {
+        "data": {
           "type": "object",
           "properties": {
-            "id": {
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            },
+            "token": {
               "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "phone": {
-              "type": "string"
-            },
-            "otpverified": {
-              "type": "boolean"
-            },
-            "dob": {
-              "type": "string"
-            },
-            "gender": {
-              "type": "string"
-            },
-            "otp_verified": {
-              "type": "boolean"
-            },
-            "email_verified": {
-              "type": "boolean"
             }
           }
         }
@@ -97,7 +80,7 @@
         }
       }
     },
-    "Send_OTP": {
+    "ImageUpload": {
       "properties": {
         "success": {
           "type": "boolean"
@@ -107,54 +90,142 @@
         }
       }
     },
-    "Verify_OTP": {
+    "ImagesFetch": {
       "properties": {
         "success": {
           "type": "boolean"
         },
         "message": {
           "type": "string"
-        }
-      }
-    },
-    "Check_User_Exist": {
-      "properties": {
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "token": {
-            "type": "string"
-          },
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "dob": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "date"
-              },
-              "updatedAt": {
-                "type": "date"
-              },
-              "gender": {
-                "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "sizes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+
+                        "size": {
+                          "type": "string"
+                        },
+                        "imageId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "shared": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "imageId": {
+                          "type": "string"
+                        },
+                        "sharedWith": {
+                          "type": "integer"
+                        },
+                        "user": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "images_count": "integer",
+            "shared_with_me_count": "integer",
+            "shared_with_me": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "integer"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "sizes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "size": {
+                          "type": "string"
+                        },
+                        "imageId": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
+        }
+      }
+    },
+    "ImagesTag": {
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
         }
       }
     }

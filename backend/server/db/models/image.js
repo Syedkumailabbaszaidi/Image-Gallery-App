@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'imageId',
         as: 'sizes',
       });
+      Image.hasMany(models.SharedImage, {
+        foreignKey: 'imageId',
+        as: 'shared',
+      });
       Image.belongsTo(models.User, {
         foreignKey: 'userId',
       });
@@ -32,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: new Date(),
       },
     },
     {

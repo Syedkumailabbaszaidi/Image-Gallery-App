@@ -20,6 +20,30 @@ class ImageRepo extends Repository {
     return this.findAndCountAllRecords(where, attributes, include, options);
   }
 
+  async fetchAllImages(where = {}, attributes = [], include = [], options = {}) {
+    attributes = ['id', 'userId', 'createdAt', ...attributes];
+
+    include = [
+      {
+        model: models.ImageSize,
+        as: 'sizes',
+      },
+      {
+        model: models.SharedImage,
+        as: 'shared',
+        include: [
+          {
+            model: models.User,
+            as: 'user',
+          },
+        ],
+      },
+      ...include,
+    ];
+
+    return this.findAllRecords(where, attributes, include, options);
+  }
+
   // async fetchUser(_params, options = {}) {
   //   const params = { ..._params };
   //   if (params.email) {

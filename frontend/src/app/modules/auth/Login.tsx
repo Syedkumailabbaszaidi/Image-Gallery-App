@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import * as yup from 'yup';
-import { ILoginForm, User } from './ducks/types';
+import { ILoginForm, IUser } from './ducks/types';
 import CopyRight from 'app/molecules/CopyRight';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -65,7 +65,7 @@ const Login = (): ReactElement => {
     dispatch(login(data, onLoginSuccess, onLoginFail));
   };
 
-  const onLoginSuccess = (userResponse: User) => {
+  const onLoginSuccess = (userResponse: IUser) => {
     saveLoginDataToCookie();
     redirectUser(userResponse);
   };
@@ -86,7 +86,7 @@ const Login = (): ReactElement => {
     }
   };
 
-  const redirectUser = (user: User) => {
+  const redirectUser = (user: IUser) => {
     navigate('/');
   };
 

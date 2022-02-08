@@ -13,10 +13,18 @@ const router = express.Router();
 router.post(
   '/upload',
   middleware.authenticateUser,
-  upload.array('images', 8),
+  upload.array('images'),
   APIValidator(ImageValidation('upload')),
   ImageController.uploadImage,
 );
+
 router.get('/', middleware.authenticateUser, ImageController.fetchImages);
+
+router.put(
+  '/:id/tag',
+  middleware.authenticateUser,
+  APIValidator(ImageValidation('param')),
+  ImageController.shareImage,
+);
 
 export default router;

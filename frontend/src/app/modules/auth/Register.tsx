@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import * as yup from 'yup';
-import { IRegisterForm, User } from './ducks/types';
+import { IRegisterForm, IUser } from './ducks/types';
 import CopyRight from 'app/molecules/CopyRight';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -57,7 +57,7 @@ const Register = (): ReactElement => {
     dispatch(register(data, onRegisterSuccess, onRegisterFail));
   };
 
-  const onRegisterSuccess = (userResponse: User) => {
+  const onRegisterSuccess = (userResponse: IUser) => {
     redirectUser(userResponse);
   };
 
@@ -67,7 +67,7 @@ const Register = (): ReactElement => {
     });
   };
 
-  const redirectUser = (user: User) => {
+  const redirectUser = (user: IUser) => {
     /* eslint-disable-next-line */
     navigate(location.state?.from?.pathname || '/');
   };

@@ -1,7 +1,7 @@
 import { ReactChild } from 'react';
 
 export interface AuthState {
-  user: User | null;
+  user: IUser | null;
   token: string | null;
   loading: boolean;
 }
@@ -28,9 +28,10 @@ export interface ILoginFormResponse {
   token: string;
 }
 
-export interface User {
+export interface IUser {
   id: number;
   name: string;
-  email: boolean;
-  isAdmin?: boolean;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
 }

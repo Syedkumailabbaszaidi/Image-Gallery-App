@@ -69,68 +69,6 @@ export const PASSWORD_MESSAGES = {
   PASSWORD_CANNOT_BE_UPDATED: 'Password cannot be updated',
 };
 
-export const PLACES_MESSAGES = {
-  SEARCH_INPUT_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Search input'),
-  PLACE_ID_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Place id'),
-  SEARCH_INPUT_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Search input'),
-  SEARCH_INPUT_LENGTH_ERROR: 'Search input must be at least 3 characters',
-  SEARCH_SUCCESSFUL: 'Place search successful',
-};
-
-export const RESTAURANTS_MESSAGES = {
-  GET_ALL_SUCCESS: 'Restaurants fetched successfully',
-  GET_SUCCESS: 'Restaurant fetched successfully',
-  CREATE_SUCCESS: 'Restaurant created successfully',
-  UPDATE_SUCCESS: 'Restaurant updated successfully',
-  DELETE_SUCCESS: 'Restaurant deleted successfully',
-  RESTAURANT_NOT_FOUND: 'Restaurant not found',
-
-  ID_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Restaurant Id'),
-  NAME_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Name'),
-  DESCRIPTION_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Description'),
-  LATITUDE_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Latitude'),
-  LONGITUDE_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Longitude'),
-  PLACE_ID_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Place id'),
-  CONTACT_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace(
-    '{field}',
-    'Contact should be in (XXX) XXX-XXX-XXXX format',
-  ),
-
-  NAME_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Name'),
-  DESCRIPTION_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Description'),
-  LATITUDE_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Latitude'),
-  LONGITUDE_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Longitude'),
-  PLACE_ID_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Place id'),
-  CONTACT_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Contact'),
-
-  PLACE_ID_ALREADY_EXISTS: COMMON_VALIDATIONS.FIELD_ALREADY_EXISTS.replace('{field}', 'Place id'),
-};
-
-export const REVIEW_MESSAGES = {
-  GET_ALL_SUCCESS: 'Reviews fetched successfully',
-  GET_SUCCESS: 'Review fetched successfully',
-  CREATE_SUCCESS: 'Review created successfully',
-  UPDATE_SUCCESS: 'Review updated successfully',
-  DELETE_SUCCESS: 'Review deleted successfully',
-  RESTAURANT_NOT_FOUND: 'Review not found',
-
-  ID_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Review Id'),
-  RESTAURANT_ID_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Restaurant id'),
-  USER_ID_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'User id'),
-  COMMENT_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Comment'),
-  RATING_IS_INVALID: COMMON_VALIDATIONS.FIELD_IS_INVALID.replace('{field}', 'Rating'),
-
-  RESTAURANT_ID_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace(
-    '{field}',
-    'Restaurant id',
-  ),
-  USER_ID_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'User id'),
-  COMMENT_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Comment'),
-  RATING_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Rating'),
-
-  RESTAURANT_ID_CANNOT_BE_UPDATED: 'Restaurant id cannot be updated',
-};
-
 export const USERS_MESSAGES = {
   GET_ALL_SUCCESS: 'Users fetched successfully',
   GET_SUCCESS: 'User fetched successfully',
@@ -154,7 +92,18 @@ export const USERS_MESSAGES = {
 };
 
 export const IMAGE_MESSAGES = {
+  FETCH_SUCCESSFULL: 'Fetched Successfully',
+  TAG_SUCCESSFULL: 'Tagged Successfully',
+  UPLOAD_SUCCESSFUL: 'Images uploaded Successfully',
   IMAGE_SIZE_ERROR: 'Image should be less than 20MB',
   IMAGE_TYPE_ERROR: 'Only png, jpg and jpeg types are allowed',
   IMAGE_IS_REQUIRED: COMMON_VALIDATIONS.FIELD_IS_REQUIRED.replace('{field}', 'Image'),
+  SHARE_LIMIT_EXCEED: 'Image cannot be shared more than 10 people',
+  SHARE_IS_REQUIRED: 'Atleast 1 person is required to share image',
+  ID_IS_INVALID: 'Image id is invalid',
+  SHARED_USERS_REQUIRED: 'Please add users to share',
+  IMAGE_NO_FOUND: 'Image not found',
+  IMAGE_ALREADY_SHARED: 'Image already shared to user(s)',
+  CANNOT_SHARE_WITH_OWNER: 'Image owner cannot be selected in tag list',
+  NO_RIGHT_TO_TAG: 'You dont have rights to tag this image',
 };

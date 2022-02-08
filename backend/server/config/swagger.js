@@ -1,17 +1,17 @@
-import middleware from "swagger-express-middleware";
-import * as path from "path";
+import middleware from 'swagger-express-middleware';
+import * as path from 'path';
 // import errorHandler from '../core/shared/utils/error.handler';
 
-export default app =>
+export default (app) =>
   new Promise((resolve, reject) => {
-    middleware(path.join(__dirname, "api.yml"), app, (err, mw) => {
+    middleware(path.join(__dirname, 'api.yml'), app, (err, mw) => {
       if (err) {
         return reject(err);
       }
       // Enable Express' case-sensitive and strict options
       // (so "/entities", "/Entities", and "/Entities/" are all different)
-      app.enable("case sensitive routing");
-      app.enable("strict routing");
+      app.enable('case sensitive routing');
+      app.enable('strict routing');
 
       app.use(mw.metadata());
       app.use(
@@ -27,8 +27,8 @@ export default app =>
             apiPath: process.env.SWAGGER_API_SPEC,
             // Disable serving the "api.yml" file
             // rawFilesPath: false
-          }
-        )
+          },
+        ),
       );
 
       app.use(
@@ -41,7 +41,7 @@ export default app =>
           json: {
             limit: process.env.REQUEST_LIMIT,
           },
-        })
+        }),
       );
 
       // These two middleware don't have any options (yet)

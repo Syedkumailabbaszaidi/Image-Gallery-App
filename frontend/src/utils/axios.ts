@@ -107,7 +107,7 @@ export const setupInterceptors = ({ debug = false }: interceptorsConfig) => {
         const { status } = error.response;
         if (status === 401) {
           removeFromLocal(TOKEN_KEY);
-          removeFromLocal('currentUser');
+          removeFromLocal('user');
           window.location.href = '/';
         }
       } else if (error.request) {
