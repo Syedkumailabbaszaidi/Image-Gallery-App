@@ -1,6 +1,4 @@
-FROM node:14.17.5
-
-RUN npm install -g http-server
+FROM node:lts-alpine as build
 
 WORKDIR /frontend
 
@@ -12,5 +10,17 @@ COPY . /frontend/
 
 RUN npm run build
 
+
+FROM nginx:latest
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=build /frontend/build /usr/share/nginx/html
+
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /usr/share/nginx/html
+
 EXPOSE 8081
-CMD ["pm2", "serve", "build", "8081", "--spa"]
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

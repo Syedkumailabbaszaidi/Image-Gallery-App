@@ -2,44 +2,37 @@ version: '3.8'
 
 services:
   api:
-    container_name: api-container
+    container_name: api_container
     build: ./backend
     restart: always
-    env_file:
-      - ./backend/.env
+    # env_file:
+    #   - "./backend/.env"
     ports:
-      - "${PORT}:${DOCKER_PORT}"
-    environment:
-      - DB_HOST=${DB_HOST}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
-      - DB_PORT=${DB_PORT}
+      - "8080:8080"
     depends_on:
       - db
     stdin_open: true
     tty: true
 
   webapp:
-    container_name: webapp-container
+    container_name: webapp_container
     restart: always
     build: ./frontend
     ports:
-      - "8081:8081"
+      - 8081:8081
     depends_on:
       - api
 
   db:
-    container_name: db-container
+    container_name: db_container
     image: mysql:5.7
     restart: always
-    env_file:
-      - ./backend/.env
     ports:
-      - "${DB_PORT}:${DB_DOCKER_PORT}"
+      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD="${DB_PASSWORD}"
-      - MYSQL_DATABASE="$DB_NAME"
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=root
     volumes:
       - db:/var/lib/mysql
 
